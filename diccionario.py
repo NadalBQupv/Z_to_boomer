@@ -11,6 +11,6 @@ JERGA_GENZ: dict[str, str] = {
     "random": "aleatorio",
     "hype": "mucha expectación",
     "shippear": "emparejar",
-    "POV": "punto de vista",
+    "pov": "punto de vista",
 }
 
