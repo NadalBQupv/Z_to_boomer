@@ -16,10 +16,35 @@ def traducir_a_boomer(frase: str) -> str:
     resultado: list[str] = []
 
     for palabra in palabras:
-        if palabra in JERGA_GENZ:
-            resultado.append(JERGA_GENZ[palabra])
+        # Signos puntuación:
+        nueva_palabra = ""
+        symbols_before = ""
+        for letter in palabra:
+            if letter.isalpha():
+                nueva_palabra = nueva_palabra + letter
+                symbols_after = ""
+            else:
+                # Compruebo si el símbolo va antes o después
+                if nueva_palabra:
+                    # va después
+                    symbols_after = symbols_after + letter
+                else:
+                    symbols_before = symbols_before + letter
+        palabra = nueva_palabra
+
+
+        # Inicio de frase:
+        cap = False
+        if palabra[0].isupper():
+            cap = True
+        
+        if palabra.lower() in JERGA_GENZ:
+            res = JERGA_GENZ[palabra]
+            if cap:
+                res = res[0].upper() + res[1:]
+            resultado.append(symbols_before + res + symbols_after)
         else:
-            resultado.append(palabra)
+            resultado.append(symbols_before + palabra + symbols_after)
 
     return " ".join(resultado)
 
